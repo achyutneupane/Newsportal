@@ -1,0 +1,60 @@
+{% extends 'master/master.html' %}
+{% block content %}
+{% load static %}
+<section id="contentSection">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <div class="left_content">
+                <div class="single_page">
+
+                    <h2><span>Popular Post</span></h2>
+                    <hr>
+                    <ul class="spost_nav">
+                        {% for data in menuDetails %}
+                        <li>
+                            <div class="media wow fadeInDown"><a href="single_page.html" class="media-left"> <img alt=""
+                                     src="{{ data.image.url }}"></a>
+                                <div class="media-body"><a href="{% url 'blog' data.slug %}" class="catg_title"><h4>{{data.title}}</h4></a>
+                                    <div class="post_commentbox"><a href="#"><i class="fa fa-user"></i>{{data.posted_by}}</a> <span><i
+                            class="fa fa-calendar"></i>{{data.created_at}}</span> <a href="#"><i
+                            class="fa fa-tags"></i>{{data.main_menu}}</a></div>
+                                    <p> {{data.description |truncatewords:35 |safe }}</p></div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <aside class="right_content">
+                <div class="single_sidebar">
+                    <h2><span>Popular Post</span></h2>
+                    <ul class="spost_nav">
+                        {% for popular in popularPost %}
+                        <li>
+                            <div class="media wow fadeInDown"><a href="{% url 'blog' popular.slug %}" class="media-left"> <img alt=""
+                                                                                                                  src="{{popular.image.url}}">
+                            </a>
+                                <div class="media-body"><a href="{% url 'blog' popular.slug %}" class="catg_title"> {{popular.title}}</a></div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="single_sidebar wow fadeInDown">
+                    <h2><span>Links</span></h2>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Rss Feed</a></li>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Life &amp; Style</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

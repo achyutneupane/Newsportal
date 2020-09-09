@@ -1,0 +1,41 @@
+{% extends 'master/master.html' %}
+{% block content %}
+{% load static %}
+<style>
+    .image{
+    width:100%;
+    }
+    ul li {
+    padding:3px;
+    color:#346;
+    }
+</style>
+
+<section id="contentSection">
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <h1>About Me </h1>
+            <hr>
+            <p>I’m an enthusiastic Developer who has been working on WordPress and blogger for the past 2 years. I love
+                playing with HTML, CSS, JS and love implementing the graphical design into beautiful code by combining
+                the art of design with the art of programming to make a beautiful website. Currently, I am studying
+                Bsc.CSIT in trinity international College</p>
+            <hr>
+            <h2>My Recent Projects</h2>
+            <hr>
+            <ul>
+                <h4>
+                <li>Naya Gadgets</li>
+                <li>Colz Life</li>
+                <li>Resto Menu System </li>
+                <li>Online Shop </li>
+                    </h4>
+            </ul>
+            <hr>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <img class="image" src="{% static 'assets/images/image.jpg'%}">
+        </div>
+    </div>
+</section>
+{% endblock %}

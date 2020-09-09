@@ -1,0 +1,96 @@
+{% extends 'master/master.html' %}
+{% block content %}
+{% load static %}
+<section id="contentSection">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-8">
+            <div class="left_content">
+                <div class="single_page">
+                    <ol class="breadcrumb">
+                        <li><a href="{%url 'home'%}">Home</a></li>
+                        {%if menuDetails.main_menu %}
+                        <li><a href="#">{{ menuDetails.main_menu }}</a></li>
+                        {%endif%}
+                    </ol>
+                    <h1>{{ menuDetails.title }}</h1>
+                    <div class="post_commentbox"><a href="#"><i class="fa fa-user"></i>{{menuDetails.posted_by}}</a>
+                        <span><i
+                                class="fa fa-calendar"></i>{{menuDetails.created_at}}</span> <a href="#"><i
+                                class="fa fa-tags"></i>{{menuDetails.main_menu}}</a></div>
+                    <div class="single_page_content"><img class="img-center" src="{{ menuDetails.image.url }}" alt="">
+                        {{ menuDetails.description | safe }}
+
+                        <hr>
+                        <button class="btn default-btn">Default</button>
+                        <button class="btn btn-red">Red Button</button>
+                    </div>
+                    <div class="social_link">
+                        <ul class="sociallink_nav">
+
+                            <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href=""><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="related_post">
+                        <h2>Related Post <i class="fa fa-thumbs-o-up"></i></h2>
+                        <ul class="spost_nav wow fadeInDown animated">
+                            {% for related in relatedPost%}
+                            <li>
+                                <div class="media"><a class="media-left" href="single_page.html"> <img
+                                        src="../images/post_img1.jpg" alt=""> </a>
+                                    <div class="media-body"><a class="catg_title" href="{% url 'blog' related.slug %}">{{related.title}}</a>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="nav-slit"><a class="prev" href="#"> <span class="icon-wrap"><i class="fa fa-angle-left"></i></span>
+            <div>
+                <h3>City Lights</h3>
+                <img src="{% static 'assets/images/post_img1.jpg' %}" alt=""/></div>
+        </a> <a class="next" href="#"> <span class="icon-wrap"><i class="fa fa-angle-right"></i></span>
+            <div>
+                <h3>Street Hills</h3>
+                <img src="../images/post_img1.jpg" alt=""/></div>
+        </a></nav>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <aside class="right_content">
+                <div class="single_sidebar">
+                    <h2><span>Popular Post</span></h2>
+                    <ul class="spost_nav">
+                        {% for popular in popularPost %}
+                        <li>
+                            <div class="media wow fadeInDown"><a href="{% url 'blog' popular.slug %}"
+                                                                 class="media-left"> <img alt=""
+                                                                                          src="{{popular.image.url}}">
+                            </a>
+                                <div class="media-body"><a href="{% url 'blog' popular.slug %}" class="catg_title">{{popular.title}}</a>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+
+                <div class="single_sidebar wow fadeInDown">
+                    <h2><span>Links</span></h2>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Rss Feed</a></li>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Life &amp; Style</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+{% endblock %}
